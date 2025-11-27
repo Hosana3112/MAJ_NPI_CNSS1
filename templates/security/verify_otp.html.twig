@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérification du Code – CNSS Bénin{% endblock %}
+
+{% block page_title %}
+
+<h2 class="mb-0">Mise à jour du Numéro Personnel d'Identification</h2> <p class="text-muted small">Étape 2 : Vérification du code OTP</p> {% endblock %}
+{% block body %}
+
+<h4 class="mb-3 text-primary">Code de vérification par email</h4> <p class="text-muted"> Veuillez saisir le code de vérification à 6 chiffres que vous avez reçu par email. Ce code permet de confirmer votre identité avant de poursuivre la mise à jour de votre NPI. </p>
+{{ form_start(form) }}
+<div class="mb-3">
+{{ form_label(form.otp, "Code OTP reçu", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+{{ form_widget(form.otp, {'attr': {'class': 'form-control', 'placeholder': 'Ex : 654321'}}) }}
+{{ form_errors(form.otp) }}
+</div>
+<div class="d-grid mt-3">
+<button type="submit" class="btn btn-primary">Vérifier</button>
+</div>
+{{ form_end(form) }}
+{% endblock %}

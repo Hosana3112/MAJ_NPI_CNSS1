@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit PersPhys{% endblock %}
+
+{% block body %}
+    <h1>Edit PersPhys</h1>
+
+    {{ include('pers_phys/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_pers_phys_index') }}" class="btn btn-primary" >back to list</a>
+
+    {{ include('pers_phys/_delete_form.html.twig') }}
+{% endblock %}

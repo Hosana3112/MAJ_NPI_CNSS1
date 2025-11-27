@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rnpp index{% endblock %}
+
+{% block body %}
+    <h1>Rnpp index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Npi</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rnpp in rnpps %}
+            <tr>
+                <td>{{ rnpp.id }}</td>
+                <td>{{ rnpp.npi }}</td>
+                <td>{{ rnpp.nom }}</td>
+                <td>{{ rnpp.prenom }}</td>
+                <td>{{ rnpp.email }}</td>
+                <td>
+                    <a href="{{ path('app_rnpp_show', {'id': rnpp.id}) }}" class="btn btn-primary" > Afficher </a>
+                    <a href="{{ path('app_rnpp_edit', {'id': rnpp.id}) }}"> Editer </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rnpp_new') }}" class="btn btn-primary" >Nouveau</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saisie du NPI – CNSS{% endblock %}
+
+{% block page_title %}
+
+<h2 class="mb-0">Mise à jour du Numéro Personnel d'Identification</h2> <p class="text-muted small">Étape 1 : Saisie du NPI</p> {% endblock %}
+{% block body %}
+
+<h4 class="mb-3 text-primary">Vérification du Numéro Personnel d’Identification (NPI)</h4> <p class="text-muted">Veuillez saisir votre NPI pour démarrer la procédure de mise à jour de vos informations auprès de l'ANIP.</p>
+{{ form_start(form) }}
+<div class="mb-3">
+{{ form_label(form.npi, "Numéro Personnel d'Identification", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+{{ form_widget(form.npi, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+{{ form_errors(form.npi) }}
+</div>
+<div class="d-grid mt-3">
+<button type="submit" class="btn btn-primary">Rechercher</button>
+</div>
+{{ form_end(form) }}
+{% endblock %}

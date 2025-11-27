@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PersPhysTraitement index{% endblock %}
+
+{% block body %}
+    <h1>Demandes en attente </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NumCNSS</th>
+                <th>NomCNSS</th>
+                <th>PrenomCNSS</th>
+                <th>NPI</th>
+                <th>NomANIP</th>
+                <th>PrenomANIP</th>
+                <th>Statut</th>
+                <th>DateNaissance</th>
+                <th>Datedemande</th>
+                <th>Date de traitement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pers_phys_traitement in pers_phys_traitements %}
+            <tr>
+                <td>{{ pers_phys_traitement.id }}</td>
+                <td>{{ pers_phys_traitement.NumCNSS }}</td>
+                <td>{{ pers_phys_traitement.NomCNSS }}</td>
+                <td>{{ pers_phys_traitement.PrenomCNSS }}</td>
+                <td>{{ pers_phys_traitement.NPI }}</td>
+                <td>{{ pers_phys_traitement.NomANIP }}</td>
+                <td>{{ pers_phys_traitement.PrenomANIP }}</td>
+                <td>{{ pers_phys_traitement.statut }}</td>
+                <td>{{  pers_phys_traitement.DateNaissance ? pers_phys_traitement.DateNaissance|date('Y-m-d') : ''  }}</td>
+                <td>{{  pers_phys_traitement.datedemande ? pers_phys_traitement.datedemande|date('Y-m-d') : ''  }}</td>
+                <td>
+                  {% if pers_phys_traitement.statut != 'En cours' and pers_phys_traitement.dateTraitement %}
+                     {{ pers_phys_traitement.dateTraitement|date('Y-m-d') }}
+                  {% else %}
+                     -
+                  {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_pers_phys_traitement_show', {'npi': pers_phys_traitement.npi}) }}" class="btn btn-primary" > Afficher </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

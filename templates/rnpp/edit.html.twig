@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Rnpp{% endblock %}
+
+{% block body %}
+    <h1>Edit Rnpp</h1>
+
+    {{ include('rnpp/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_rnpp_index') }}" class="btn btn-primary" > Retour </a>
+
+    {{ include('rnpp/_delete_form.html.twig') }}
+{% endblock %}

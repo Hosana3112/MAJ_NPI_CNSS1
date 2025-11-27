@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Refus de traitement – CNSS{% endblock %}
+
+{% block page_title %}
+<h2 class="mb-0">Refus de traitement du NPI</h2>
+<p class="text-muted small">Étape : Saisie du motif de refus</p>
+{% endblock %}
+
+{% block body %}
+<h4 class="mb-3 text-primary">Indiquez le motif du refus</h4>
+<p class="text-muted">Veuillez renseigner la raison du refus de traitement de ce NPI. Un e-mail sera envoyé automatiquement à l'intéressé.</p>
+
+{{ form_start(form) }}
+
+<div class="mb-3">
+    {{ form_label(form.motif, "Motif du rejet", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.motif, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+    {{ form_errors(form.motif) }}
+</div>
+
+<div class="d-grid mt-3">
+   <button type="submit" class="btn btn-primary">Entrer</button></br>
+</div>
+
+{{ form_end(form) }}
+
+<a href="{{ path('app_pers_phys_traitement_index') }}" class="btn btn-primary">Retour</a>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation des informations – CNSS Bénin{% endblock %}
+
+{% block page_title %}
+
+<h2 class="mb-0">Mise à jour du Numéro Personnel d'Identification</h2> <p class="text-muted small">Étape 4 : Récapitulatif des informations</p> {% endblock %}
+{% block body %}
+
+<h4 class="mb-3 text-primary">Confirmation des informations personnelles</h4> <p class="text-muted">Veuillez vérifier attentivement les informations ci-dessous avant de valider. Ces données seront transmises à la CNSS.</p>
+{{ form_start(form) }}
+<div class="row">
+<div class="col-md-6 mb-3">
+{{ form_label(form.npi, "NPI", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+{{ form_widget(form.npi, {'attr': {'class': 'form-control', 'readonly': true}}) }}
+{{ form_errors(form.npi) }}
+</div>
+<div class="col-md-6 mb-3">
+{{ form_label(form.mat_pers, "Numéro CNSS", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+{{ form_widget(form.mat_pers, {'attr': {'class': 'form-control', 'readonly': true}}) }}
+{{ form_errors(form.mat_pers) }}
+</div>
+</div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    {{ form_label(form.nom_pers, "Nom", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.nom_pers, {'attr': {'class': 'form-control', 'readonly': true}}) }}
+    {{ form_errors(form.nom_pers) }}
+  </div>
+  <div class="col-md-6 mb-3">
+    {{ form_label(form.pnom_pers, "Prénom", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+    {{ form_widget(form.pnom_pers, {'attr': {'class': 'form-control', 'readonly': true}}) }}
+    {{ form_errors(form.pnom_pers) }}
+  </div>
+</div>
+
+<div class="mb-3">
+  {{ form_label(form.dateNaiss, "Date de naissance", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+  {{ form_widget(form.dateNaiss, {'attr': {'class': 'form-control', 'readonly': true}}) }}
+  {{ form_errors(form.dateNaiss) }}
+</div>
+
+<div class="form-check mb-4">
+  <input type="checkbox" class="form-check-input" name="confirmation" id="confirmation" required>
+  <label class="form-check-label" for="confirmation">
+    Je confirme que les informations affichées sont exactes.
+  </label>
+</div>
+
+<div class="d-grid">
+  <button type="submit" class="btn btn-primary">Valider</button>
+</div>
+{{ form_end(form) }}
+{% endblock %}

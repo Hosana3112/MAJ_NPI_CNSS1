@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vérification CNSS – CNSS Bénin{% endblock %}
+
+{% block page_title %}
+
+<h2 class="mb-0">Mise à jour du Numéro Personnel d'Identification</h2> <p class="text-muted small">Étape 3 : Vérification auprès de la CNSS</p> {% endblock %}
+{% block body %}
+
+<h4 class="mb-3 text-primary">Vérification des informations CNSS</h4> <p class="text-muted"> Veuillez saisir votre numéro d’immatriculation CNSS ainsi que votre date de naissance afin de confirmer votre identité dans nos registres. </p>
+{{ form_start(form) }}
+<div class="mb-3">
+{{ form_label(form.mat_pers, "Numéro CNSS", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+{{ form_widget(form.mat_pers, {'attr': {'class': 'form-control', 'placeholder': 'Ex : 0123456789'}}) }}
+{{ form_errors(form.mat_pers) }}
+</div>
+<div class="mb-3">
+{{ form_label(form.dateNaiss, "Date de naissance", {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+{{ form_widget(form.dateNaiss, {'attr': {'class': 'form-control'}}) }}
+{{ form_errors(form.dateNaiss) }}
+</div>
+<div class="d-grid mt-3">
+<button type="submit" class="btn btn-primary">Suivant</button>
+</div>
+{{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Statistiques Générales</h2>
+    
+    <div class="row text-center mb-5">
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                    <h5 class="card-title"> Demandes en attente</h5>
+                    <p class="display-4">{{ nbDemandes }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Travailleurs avec NPI</h5>
+                    <p class="display-4">{{ nbAvecNpi }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Travailleurs sans NPI</h5>
+                    <p class="display-4">{{ nbSansNpi }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <canvas id="npiChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('npiChart').getContext('2d');
+    const npiChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Avec NPI', 'Sans NPI'],
+            datasets: [{
+                data: [{{ nbAvecNpi }}, {{ nbSansNpi }}],
+                backgroundColor: ['#198754', '#dc3545'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            rotation: -90,       // Commencer à -90°
+            circumference: 180,  // Afficher 180° seulement
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Répartition des Travailleurs (NPI)',
+                    font: {
+                      size: 18,        // Taille du texte
+                      weight: 'bold'   // Texte en gras
+                    },
+                padding: {
+                     bottom: 50       // Espacement vers le bas
+                },
+                color: '#333'        // (optionnel) Couleur du texte
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

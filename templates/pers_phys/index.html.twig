@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PersPhys index{% endblock %}
+
+{% block body %}
+    <h1>PersPhys index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mat_pers</th>
+                <th>Nom_pers</th>
+                <th>Pnom_pers</th>
+                <th>DateNaiss</th>
+                <th>Npi</th>
+                <th>NumCNSS</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pers_phy in pers_phys %}
+            <tr>
+                <td>{{ pers_phy.id }}</td>
+                <td>{{ pers_phy.matPers }}</td>
+                <td>{{ pers_phy.nomPers }}</td>
+                <td>{{ pers_phy.pnomPers }}</td>
+                <td>{{ pers_phy.dateNaiss ? pers_phy.dateNaiss|date('Y-m-d') : '' }}</td>
+                <td>{{ pers_phy.npi }}</td>
+                <td>{{ pers_phy.numCNSS }}</td>
+                <td>
+                    <a href="{{ path('app_pers_phys_show', {'id': pers_phy.id}) }}" class="btn btn-primary" >Afficher</a>
+                    <a href="{{ path('app_pers_phys_edit', {'id': pers_phy.id}) }}" class="btn btn-primary" >Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pers_phys_new') }}" class="btn btn-primary" >Nouveau</a>
+{% endblock %}

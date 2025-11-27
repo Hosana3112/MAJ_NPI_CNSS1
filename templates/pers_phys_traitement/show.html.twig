@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PersPhysTraitement{% endblock %}
+
+{% block body %}
+    <h1>Informations du Travailleur</h1>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ path('app_pers_phys_traitement_index') }}" class="btn btn-primary"><-</a>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pers_phys_traitement.id }}</td>
+            </tr>
+            <tr>
+                <th>NumCNSS</th>
+                <td>{{ pers_phys_traitement.NumCNSS }}</td>
+            </tr>
+            <tr>
+                <th>NomCNSS</th>
+                <td>{{ pers_phys_traitement.NomCNSS }}</td>
+            </tr>
+            <tr>
+                <th>PrenomCNSS</th>
+                <td>{{ pers_phys_traitement.PrenomCNSS }}</td>
+            </tr>
+            <tr>
+                <th>NPI</th>
+                <td>{{ pers_phys_traitement.NPI }}</td>
+            </tr>
+            <tr>
+                <th>NomANIP</th>
+                <td>{{ pers_phys_traitement.NomANIP }}</td>
+            </tr>
+            <tr>
+                <th>PrenomANIP</th>
+                <td>{{ pers_phys_traitement.PrenomANIP }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ pers_phys_traitement.statut }}</td>
+            </tr>
+             <tr>
+                <th>DateNaissance</th>
+                <td>{{  pers_phys_traitement.DateNaissance ? pers_phys_traitement.DateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if pers_phys_traitement.statut == 'En cours' %}
+       <div class="d-flex justify-content-between">
+         <a href="{{ path('app_pers_phys_traitement_valider', {'npi': pers_phys_traitement.npi}) }}" class="btn btn-primary">Valider</a>
+         <a href="{{ path('app_pers_phys_traitement_refuser', {'npi': pers_phys_traitement.npi}) }}" class="btn btn-primary">Refuser</a>
+        </div>
+    {% elseif pers_phys_traitement.statut == 'Rejeté' %}
+     <table class="table">
+       <tbody>
+          <tr>
+            <th>Motif</th>
+            <td>{{ pers_phys_traitement.Motif }}</td>
+          </tr>
+       </tbody>
+     </table>
+    {% endif %}
+
+
+{% endblock %}

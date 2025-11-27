@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PersPhys{% endblock %}
+
+{% block body %}
+    <h1>Create new PersPhys</h1>
+
+    {{ include('pers_phys/_form.html.twig') }}
+
+    <a href="{{ path('app_pers_phys_index') }}" class="btn btn-primary" > Retour </a>
+{% endblock %}
